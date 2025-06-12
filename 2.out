@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/env bqn
+#!/usr/bin/env bqn
 
 u←•Import"U"
 •Show+´∾((∧´4⊸>∧>⟜0)∘(-´˘2↕⊢)˘⊢≍-)¨i←u.Stn¨•FLines"2.in"
