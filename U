@@ -1,8 +1,25 @@
 {
+	#Split string 𝕩 using character 𝕨.
 	Spl⇐(¬-˜⊢×·+`»⊸>)∘≠⊔⊢
+
+	#Parse string 𝕩 as base 10 integer.
+	#ToDo:	Perhaps tweak it to be able to parse
+	#	bases [2,10], though there's some
+	#	unexpected behaviour if ∨´𝕩>𝕨+'0'
 	Pin⇐10⊸×⊸+˜´∘⌽-⟜'0'
-	Stn⇐Pin¨' '⊸Spl
-	Alf⇐•FLines{𝔽𝕨𝔽(𝔽⎊0⥊⊢𝕨)∾⋈𝕩}
-	Dll⇐•FLines{𝔽𝕩𝔽(¯1↓𝔽𝕩)}
-	Cnf⇐•FLines{𝕩⋈𝔽𝕩𝔽𝔽"H"}
+
+	#𝕨 delimited string 𝕩 to list of ints.
+	Stn⇐Pin¨Spl
+
+	#Append string 𝕩 to file 𝕨 in a new line.
+	#Creates file 𝕨 if it didn't exist before.
+	Alf⇐•FLines{(⋈∾𝔽)𝕨𝔽(𝔽⎊(0⥊⊢)𝕨)∾⋈𝕩}
+
+	#Delete last line of file 𝕩.
+	Dll⇐•FLines{(⋈∾𝔽)𝕩𝔽(¯1↓𝔽𝕩)}
+
+	#Create new file 𝕩 using file 𝕨 as template.
+	#ToDo:	𝕨 can be a dummy file, but it'd be nice
+	#	to be able to be called monadically.
+	Cnf⇐•FLines{(<∾𝔽)𝕩𝔽(𝔽⎊(0⥊⊢)𝕨)}
 }
