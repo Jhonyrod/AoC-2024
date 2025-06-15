@@ -11,6 +11,9 @@
 	#𝕨 delimited string 𝕩 to list of ints.
 	Stn⇐Pin¨Spl
 
+	#Alt string to int; any separaror <'0'.
+	San⇐{(>⟜«0≤𝕩)/0(0⊸≤××⟜10⊸+)`𝕩}⊢-'0'˙
+
 	#Append string 𝕩 to file 𝕨 in a new line.
 	#Creates file 𝕨 if it didn't exist before.
 	Alf⇐•FLines{(⋈∾𝔽)𝕨𝔽(𝔽⎊(0⥊⊢)𝕨)∾⋈𝕩}
