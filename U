@@ -2,6 +2,9 @@
 	#Split string 𝕩 using character 𝕨.
 	Spl⇐(¬-˜⊢×·+`»⊸>)∘≠⊔⊢
 
+	#Special case for empty elements.
+	Snl⇐(¬-˜⊢×·+`»⊸>)∘(⟨⟩⊸≢¨)⊔⊢
+
 	#Parse string 𝕩 as base 10 integer.
 	#ToDo:	Perhaps tweak it to be able to parse
 	#	bases [2,10], though there's some
