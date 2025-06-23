@@ -2,10 +2,10 @@
 
 u←	•Import"U"
 
-#○lap:	70≡2×@-˜"#"
+#○lap≡+˜'#'-@. Very dirty trick
 o←	70
 
 #Locks‿Keys
-l‿k←	@-˜'.'((=⟜⊑¨)⊔⊢)>¨u.Snl•FLines(⊑⎊"25.ex")•args
+l‿k←@-˜'.'((=⟜⊑¨)⊔⊢)>¨u.Snl•FLines⊑•args
 
-•Show	+´⥊¬(∨´⥊)¨o⍷¨l+⌜k
+•Show	+´⥊¬∨´∘⥊¨o⍷¨l+⌜k
