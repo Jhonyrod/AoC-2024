@@ -1,6 +1,6 @@
 {
 	#Interleave
-	_In⇐{𝕨∾𝕗∾𝕩}
+	Ins⇐∾⟜⊣⊸∾∘⊢
 
 	#Generalized Split
 	_Gs⇐{𝕨((¬-˜⊢×·+`»⊸>)∘𝔽⊔⊢)𝕩}
@@ -40,4 +40,10 @@
 	#ToDo:	𝕨 can be a dummy file, but it'd be nice
 	#	to be able to be called monadically.
 	Cnf⇐•FLines{(<∾𝔽)𝕩𝔽(𝔽⎊""𝕨)}
+
+	#Visualize/Vertical HashMap
+	Vhm⇐{⍉(𝕩.Keys≍𝕩.Values)@}
+
+	#Compare HashMaps
+	Chm⇐{≡´∧∘Vhm¨𝕩‿𝕨}
 }
