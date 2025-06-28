@@ -1,49 +1,56 @@
-{
-	#Interleave
-	Ins⇐∾⟜⊣⊸∾∘⊢
+#Generalized Split
+_Gs←{𝕨((¬-˜⊢×·+`»⊸>)∘𝔽⊔⊢)𝕩}
 
-	#Generalized Split
-	_Gs⇐{𝕨((¬-˜⊢×·+`»⊸>)∘𝔽⊔⊢)𝕩}
+#Split string 𝕩 using character 𝕨.
+Spl⇐≠_Gs
 
-	#Split string 𝕩 using character 𝕨.
-	Spl⇐≠_Gs
+#Split on word. CAUTION: SUPER WONKY!
+Sow⇐(¬≠∘⊢↑≠`∘⍷)_Gs
 
-	#Split on word. CAUTION: SUPER WONKY!
-	Sow⇐(¬≠∘⊢↑≠`∘⍷)_Gs
+#Special case for empty elements
+Snl⇐(""⊸≢¨)_Gs
 
-	#Special case for empty elements.
-	Snl⇐(⟨⟩⊸≢¨)_Gs
+#Parse string 𝕩 as base 10 integer.
+#ToDo:	Perhaps tweak it so it can
+#		parse bases [2,10], though
+#		there'd be some	unexpected
+#		behaviour if ∨´𝕩>𝕨+'0'
+Pin⇐10⊸×⊸+˜´∘⌽-⟜'0'
 
-	#Parse string 𝕩 as base 10 integer.
-	#ToDo:	Perhaps tweak it to be able to parse
-	#	bases [2,10], though there's some
-	#	unexpected behaviour if ∨´𝕩>𝕨+'0'
-	Pin⇐10⊸×⊸+˜´∘⌽-⟜'0'
+#Binary list to number
+B2N⇐2⊸×⊸+˜´⌽
 
-	#Binary list to number
-	B2n⇐2⊸×⊸+˜´⌽
+#(Decimal) Number to "any" base digits
+#No real risk of stack overflow before
+#having to deal with float's precision
+D2B⇐{𝕨>𝕩?⋈𝕩;𝕨|𝕩∾˜𝕨𝕊⌊𝕩÷𝕨}
 
-	#𝕨 delimited string 𝕩 to list of ints.
-	Stn⇐Pin¨Spl
+#𝕨 delimited string 𝕩 to list of ints.
+Stn⇐Pin¨Spl
 
-	#Alt string to int; any separaror <'0'.
-	San⇐{(>⟜«0≤𝕩)/0(0⊸≤××⟜10⊸+)`𝕩}⊢-'0'˙
+#Alt string to int; any separaror <'0'.
+San←{(>⟜«0≤𝕩)/0(0⊸≤××⟜10⊸+)`𝕩}⊢-'0'˙
 
-	#Append string 𝕩 to file 𝕨 in a new line.
-	#Creates file 𝕨 if it didn't exist before.
-	Alf⇐•FLines{(⋈∾𝔽)𝕨𝔽(𝔽⎊""𝕨)∾⋈𝕩}
+#Append string 𝕩 to file 𝕨 in a new line.
+#Creates file 𝕨 if it didn't exist before.
+Alf⇐•FLines{(⋈∾𝔽)𝕨𝔽(𝔽⎊""𝕨)∾⋈𝕩}
 
-	#Delete last line of file 𝕩.
-	Dll⇐•FLines{(⋈∾𝔽)𝕩𝔽(¯1↓𝔽𝕩)}
+#Delete last line of file 𝕩.
+Dll⇐•FLines{(⋈∾𝔽)𝕩𝔽(¯1↓𝔽𝕩)}
 
-	#Create new file 𝕩 using file 𝕨 as template.
-	#ToDo:	𝕨 can be a dummy file, but it'd be nice
-	#	to be able to be called monadically.
-	Cnf⇐•FLines{(<∾𝔽)𝕩𝔽(𝔽⎊""𝕨)}
+#Create new file 𝕩 as a copy of 𝕨
+#ToDo:	𝕨 can be a dummy file, but it'd
+#		be nice to be able to be called
+#		monadically as well.
+Cnf⇐•FLines{(<∾𝔽)𝕩𝔽(𝔽⎊""𝕨)}
 
-	#Visualize/Vertical HashMap
-	Vhm⇐{⍉(𝕩.Keys≍𝕩.Values)@}
+#Copy length; many options for the output
+_l_⇐{𝔽∘⌈○≠↑¨𝔾}
+Cpr←⊢_l_⋈	#Pad right
+Cpl⇐-_l_⋈	#Pad _left
 
-	#Compare HashMaps
-	Chm⇐{≡´∧∘Vhm¨𝕩‿𝕨}
-}
+#Visualize/Vertical HashMap
+Vhm⇐{⍉(𝕩.Keys≍𝕩.Values)@}
+
+#Compare HashMaps
+Chm⇐≡´∧○Vhm
